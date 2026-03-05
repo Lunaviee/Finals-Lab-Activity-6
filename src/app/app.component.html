@@ -1,0 +1,157 @@
+<div class="container py-5">
+
+  <h2 class="text-center mb-4" style="color: #d17a8e; font-weight: bold;">
+    🌸 Book Library Manager
+  </h2>
+
+  <!-- ================= FORM ================= -->
+  <div class="card shadow-sm mb-5"
+       style="border-radius: 15px; background-color: #ffe4e8; border: 1px solid #ffccd5;">
+
+    <div class="card-body p-4">
+
+      <h5 class="card-title mb-3" style="color: #7d4a56;">
+        {{ isEdit ? 'Edit Details' : 'Add New Book' }}
+      </h5>
+
+      <div class="row g-3">
+
+        <!-- Title -->
+        <div class="col-md-6">
+          <label class="small fw-bold text-muted">Book Title</label>
+          <input [(ngModel)]="titleProp"
+                 class="form-control"
+                 placeholder="Enter title..."
+                 style="border-color: #ffccd5;">
+        </div>
+
+        <!-- Author -->
+        <div class="col-md-6">
+          <label class="small fw-bold text-muted">Author</label>
+          <input [(ngModel)]="author"
+                 class="form-control"
+                 placeholder="Enter author name..."
+                 style="border-color: #ffccd5;">
+        </div>
+
+        <!-- Year -->
+        <div class="col-md-4">
+          <label class="small fw-bold text-muted">Year</label>
+          <input [(ngModel)]="year"
+                 class="form-control"
+                 placeholder="YYYY"
+                 style="border-color: #ffccd5;">
+        </div>
+
+        <!-- Price -->
+        <div class="col-md-4">
+          <label class="small fw-bold text-muted">Price</label>
+          <input [(ngModel)]="price"
+                 type="number"
+                 class="form-control"
+                 placeholder="0.00"
+                 style="border-color: #ffccd5;">
+        </div>
+
+        <!-- Description -->
+        <div class="col-12">
+          <label class="small fw-bold text-muted">Description</label>
+          <textarea [(ngModel)]="desc"
+                    class="form-control"
+                    rows="2"
+                    placeholder="Tell us about the book..."
+                    style="border-color: #ffccd5;"></textarea>
+        </div>
+
+        <!-- Buttons -->
+        <div class="col-12 text-end mt-4">
+          <button (click)="saveBook()"
+                  class="btn btn-primary px-4 me-2"
+                  style="background-color: #ff85a1; border: none;">
+            {{ isEdit ? 'Update Changes' : 'Save to Library' }}
+          </button>
+
+          <button *ngIf="isEdit"
+                  (click)="resetForm()"
+                  class="btn btn-secondary px-4">
+            Cancel
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= TABLE ================= -->
+  <div class="table-responsive bg-white rounded shadow-sm"
+       style="border: 1px solid #ffe4e8;">
+
+    <table class="table table-hover align-middle mb-0">
+
+      <thead style="background-color: #ffc2d1; color: white;">
+        <tr>
+          <th style="width:25%; padding: 15px;">Title</th>
+          <th style="width:20%;">Author</th>
+          <th style="width:15%;">Year</th>
+          <th style="width:15%;">Price</th>
+          <th style="width:25%;" class="text-center">Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (book of books; track book.id) {
+
+          <tr>
+            <!-- Title -->
+            <td class="ps-3">
+              <strong style="color:#d17a8e;">
+                {{ book.title || book.Title }}
+              </strong>
+            </td>
+
+            <!-- Author -->
+            <td>
+              {{ book.author || book.Author }}
+            </td>
+
+            <!-- Year -->
+            <td>
+              {{ book.year || book.Year }}
+            </td>
+
+            <!-- Price -->
+            <td>
+              <strong>
+                ${{ book.price || book.Price }}
+              </strong>
+            </td>
+
+            <!-- Actions -->
+            <td class="text-center">
+              <button (click)="editBook(book)"
+                      class="btn btn-sm btn-outline-info me-2">
+                Edit
+              </button>
+
+              <button (click)="deleteBook(book.id || book.Id)"
+                      class="btn btn-sm btn-outline-danger">
+                Delete
+              </button>
+            </td>
+          </tr>
+
+        } @empty {
+
+          <tr>
+            <td colspan="5" class="text-center py-5 text-muted">
+              🌸 Your library is currently empty. Add a book above!
+            </td>
+          </tr>
+
+        }
+      </tbody>
+
+    </table>
+  </div>
+
+</div>

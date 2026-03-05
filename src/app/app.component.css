@@ -1,0 +1,40 @@
+:host {
+    display: block;
+    min-height: 100vh;
+    background-color: #fff0f3;
+}
+
+.pink-card {
+    background-color: #ffe4e8;
+    border: 1px solid #ffccd5;
+    border-radius: 12px;
+}
+
+.pink-table-header {
+    background-color: #ffc2d1 !important;
+}
+
+.pink-table-header th {
+    color: white !important;
+    font-weight: 600;
+    border: none;
+}
+
+.form-control {
+    border-color: #ffccd5;
+    color: #555;
+}
+
+.form-control:focus {
+    border-color: #ff85a1;
+    box-shadow: 0 0 0 0.25rem rgba(255, 133, 161, 0.25);
+}
+
+.btn-primary {
+    background-color: #ff85a1;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #ff5c8a;
+}
